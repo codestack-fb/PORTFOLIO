@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <header id="header">
+      <nav>
+        <div class="left_group">
+          <h1>HS</h1>
+        </div>
+        <div class="right_group">
+          <ul>
+            <li>
+              <form action="{% url 'search' %}" method="GET">
+                <input type="text" placeholder="Search project..." id="input" name="q">
+                <button type="submit"><i class="ri-search-line" id="search"></i></button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section id="projects">
+        <div class="projects__container">
+            <div class="projects__content">
+                {% for proyekt in proyektlar %}
+                <a class="project_card" href="{% url 'detail' pk=proyekt.id %}" style="text-decoration: none;">
+                    <div class="img">
+                        <img width="100%" src="{{ proyekt.image.url }}" alt="" />
+                    </div>
+                    <div class="card_text">
+                        <h2 style="margin-bottom: 10px; color: white;">{{ proyekt.name }}</h2>
+                    </div>
+                </a>
+                {% endfor %}
+              </div>        
+        </div>
+    </section>
+    <script>
+      let header = document.getElementById('header')
+      let search = document.getElementById('search')
+      let input = document.getElementById('input')
+
+      window.addEventListener('scroll' ,(e)=>{
+        if(scrollY != 0){
+          header.style.background = '#fff'
+          header.style.color = '#000'
+          search.style.color = '#000'
+          input.style.border = '1px solid #0d0d0d90'
+        }
+        else{
+          header.style.background = 'transparent'
+          header.style.color = '#fff'          
+          search.style.color = '#fff'
+        }
+      })
+
+  </script>
+  </body>
+</html>

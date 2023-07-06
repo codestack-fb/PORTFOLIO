@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ project.name }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <section id="detail">
+        <div class="details">
+            <div class="img_detail">
+              <img src="{{ project.image.url }}" width="600px" alt="" />
+            </div>
+            <div class="text_detail">
+              <h1>{{ project.name }}</h1>
+              <p>{{ project.description }}</p>
+              <a href="{{ project.link }}">Link</a>
+            </div>
+          </div>      
+    </section>
+
+</body>
+</html>
